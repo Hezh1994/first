@@ -17,13 +17,16 @@ public class FileToByte {
 		}
 		try {
 			FileInputStream fis = new FileInputStream(file);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(1000);
-			byte[] b = new byte[1000];
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(1000);//这里用1000会浪费很多临时内存空间
+			byte[] b = new byte[1000];//读缓存最好一次读4096或者8192
 			int i;
 			while((i = fis.read(b)) != -1){
 				bos.write(b, 0, i);
 				
 			}
+			/**
+			 * 有可能无法释放资源，前面会抛出异常导致程序中断。
+			 */
 			fis.close();
 			bos.close();
 			return bos.toByteArray();

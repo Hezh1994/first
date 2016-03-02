@@ -5,10 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class IntToHexTest {
+	int i = 5363;
 
 	@Test
 	public void test() {
-		assertEquals("-10", IntToHex.intToHex(-16));
+		assertEquals(Integer.toHexString(i), IntToHex.intToHex(i));
 	}
 
 }
