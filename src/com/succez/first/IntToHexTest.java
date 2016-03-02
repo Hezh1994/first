@@ -1,4 +1,4 @@
-package succez.first;
+package com.succez.first;
 
 import static org.junit.Assert.*;
 

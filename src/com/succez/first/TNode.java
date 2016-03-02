@@ -1,4 +1,4 @@
-package succez.first;
+package com.succez.first;
 
 import java.util.ArrayList;
 import java.util.List;

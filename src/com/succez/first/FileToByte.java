@@ -1,4 +1,4 @@
-package succez.first;
+package com.succez.first;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

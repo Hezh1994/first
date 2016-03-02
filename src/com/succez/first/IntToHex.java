@@ -1,4 +1,4 @@
-package succez.first;
+package com.succez.first;
 
 public class IntToHex {
 	/**
