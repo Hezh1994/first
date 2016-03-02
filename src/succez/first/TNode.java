@@ -7,6 +7,11 @@ public class TNode {
 	private String value;
 	private TNode left, right;
 
+	public TNode(String value) {
+		super();
+		this.value = value;
+	}
+
 	public String getValue() {
 		return value;
 	}
@@ -31,8 +36,6 @@ public class TNode {
 		this.right = right;
 	}
 
-	public static int level = 0;
-
 	/**
 	 * 
 	 * @param nodes
@@ -41,9 +44,8 @@ public class TNode {
 	 *            层数
 	 * @return 返回一个ArrayLise集合，集合中存放第n层中的所有节点
 	 * 
-	 * 采用递归的方法，将当前传入的List集合中的所有孩子节点存放到temp集合中，再将temp作为参数
-	 * 传入，同时n-1
-	 * n=1为递归出口，返回当前传入的集合。
+	 *         采用递归的方法，将当前传入的List集合中的所有孩子节点存放到temp集合中，再将temp作为参数 传入，同时n-1
+	 *         n=1为递归出口，返回当前传入的集合。
 	 */
 	public static List<TNode> TreeLevel(List<TNode> nodes, int n) {
 		if (nodes == null || nodes.size() == 0) {
@@ -67,31 +69,24 @@ public class TNode {
 		return TreeLevel(temp, n - 1);
 	}
 
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		//创建给定的树
-		TNode root = new TNode();
-		root.setValue("A");
 
-		TNode nodeB = new TNode();
-		nodeB.setValue("B");
+		// 创建给定的树
+		TNode root = new TNode("A");
 
-		TNode nodeD = new TNode();
-		nodeD.setValue("D");
+		TNode nodeB = new TNode("B");
 
-		TNode nodeG = new TNode();
-		nodeG.setValue("G");
+		TNode nodeD = new TNode("D");
 
-		TNode nodeH = new TNode();
-		nodeH.setValue("H");
+		TNode nodeG = new TNode("G");
 
-		TNode nodeC = new TNode();
-		nodeC.setValue("C");
+		TNode nodeH = new TNode("H");
 
-		TNode nodeF = new TNode();
-		nodeF.setValue("F");
+		TNode nodeC = new TNode("C");
+
+		TNode nodeF = new TNode("F");
+
 
 		root.setLeft(nodeB);
 		root.setRight(nodeD);
@@ -104,9 +99,9 @@ public class TNode {
 
 		List<TNode> nodes = new ArrayList<TNode>();
 		nodes.add(root);
-		ArrayList<TNode> result = (ArrayList<TNode>) TreeLevel(nodes, 1);
-		
-		//打印返回的ArrayList
+		ArrayList<TNode> result = (ArrayList<TNode>) TreeLevel(nodes, 3);
+
+		// 打印返回的ArrayList
 		for (int i = 0; i < result.size(); i++) {
 			System.out.print(result.get(i).getValue());
 			if (i < result.size() - 1)
