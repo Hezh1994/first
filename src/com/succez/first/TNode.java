@@ -5,11 +5,13 @@ import java.util.List;
 
 public class TNode {
 	private String value;
-	private TNode left, right;
+	public TNode left, right;
 
 	public TNode(String value) {
 		super();
 		this.value = value;
+		this.left = null;
+		this.right = null;
 	}
 
 	public String getValue() {
@@ -37,20 +39,15 @@ public class TNode {
 	}
 
 	/**
+	 * 传入一个包装有树的根节点的集合，以及需要查找的层数n，返回包含指定层数所有节点的ArrayList集合
 	 * 
 	 * @param nodes
-	 *            存放根节点的List
+	 *            包装树的根节点的List集合
 	 * @param n
 	 *            层数
-	 * @return 返回一个ArrayLise集合，集合中存放第n层中的所有节点
-	 * 
-	 *         采用递归的方法，将当前传入的List集合中的所有孩子节点存放到temp集合中，再将temp作为参数 传入，同时n-1
-	 *         n=1为递归出口，返回当前传入的集合。
+	 * @return 第n层所有节点的值，且顺序从左到右，格式如：A-B-C。
 	 */
-	public static List<TNode> TreeLevel(List<TNode> nodes, int n) {
-		if (nodes == null || nodes.size() == 0) {
-			return null;
-		}
+	private static List<TNode> getNodesByTreeLevel(List<TNode> nodes, int n) {
 		List<TNode> temp = new ArrayList<TNode>();
 		if (n == 1) {
 			return nodes;
@@ -62,50 +59,39 @@ public class TNode {
 			if (node.getRight() != null) {
 				temp.add(node.getRight());
 			}
-
 		}
-
 		nodes.removeAll(nodes);
-		return TreeLevel(temp, n - 1);
+		return getNodesByTreeLevel(temp, n - 1);
 	}
 
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//
-//		// 创建给定的树
-//		TNode root = new TNode("A");
-//
-//		TNode nodeB = new TNode("B");
-//
-//		TNode nodeD = new TNode("D");
-//
-//		TNode nodeG = new TNode("G");
-//
-//		TNode nodeH = new TNode("H");
-//
-//		TNode nodeC = new TNode("C");
-//
-//		TNode nodeF = new TNode("F");
-//
-//
-//		root.setLeft(nodeB);
-//		root.setRight(nodeD);
-//
-//		nodeB.setLeft(nodeG);
-//		nodeB.setRight(nodeH);
-//
-//		nodeD.setLeft(nodeC);
-//		nodeD.setRight(nodeF);
-//
-//		List<TNode> nodes = new ArrayList<TNode>();
-//		nodes.add(root);
-//		ArrayList<TNode> result = (ArrayList<TNode>) TreeLevel(nodes, 3);
-//
-//		// 打印返回的ArrayList
-//		for (int i = 0; i < result.size(); i++) {
-//			System.out.print(result.get(i).getValue());
-//			if (i < result.size() - 1)
-//				System.out.print("-");
-//		}
-//	}
+	/**
+	 * 根据树的根节点查询指定层数n的所有节点的值，结果返回一个字符串如：A-B-C
+	 * 
+	 * @param tree
+	 *            树的根节点
+	 * @param n
+	 *            要查询的层数
+	 * @return 指定层数n所有节点的值
+	 * @throws Exception
+	 */
+	public static String TreeLevel(TNode tree, int n) throws Exception {
+		if (tree == null) {
+			throw new Exception("请不要输入一个空树");
+		}
+		if (n <= 0) {
+			throw new Exception("请输入正确的层数:0~最大层数");
+		}
+		List<TNode> nodes = new ArrayList<TNode>();
+		nodes.add(tree);
+		ArrayList<TNode> result = (ArrayList<TNode>) getNodesByTreeLevel(nodes,
+				n);
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < result.size(); i++) {
+			sb.append(result.get(i).getValue());
+			if (i < result.size() - 1)
+				sb.append('-');
+		}
+		return sb.toString();
+	}
+
 }

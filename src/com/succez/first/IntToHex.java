@@ -1,32 +1,34 @@
 package com.succez.first;
 
 public class IntToHex {
-	private static String S = "0123456789abcdef";
+	private static char[] HEX_CHARS = { '0', '1', '2', '3', '4', '5', '6', '7',
+			'8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+
 	/**
-	 * 定义一个字符串s，用来表示16以内的十进制数的十六进制
-	 * 用十进制数除以16，将余数对应的16进制数保存到StringBuffer中，若商不为0则继续除以16 
-	 * 得到的StringBuffer与该十进制数的十六进制数是相反的，调用StrinBuffer的reverse()方法颠倒顺序
-	 * 然后调用toString()方法并return十六进制字符串
-	 * 
+	 * 将一个十进制数转换为十六进制，并返回十六进制字符串。如：intToHex(Integer.MAX_VALUE),返回7fffffff。
 	 * @param i
 	 *            十进制数
-	 * @return 转换后的十六进制字符串
-	 * 
-	 * 
+	 * @return 十六进制数字符串
 	 */
-	public static String intToHex(int i) {	
-		
-		/**
-		 * 若传入一个负数...
-		 */
-		
+	public static String intToHex(int i) {
+		boolean isNegatives = false;
+		if(i == Integer.MIN_VALUE){
+			return "-80000000";
+		}
+		if (i < 0) {
+			isNegatives = true;
+			i = Math.abs(i);
+		}
 		int a = 0;
-		StringBuffer sb = new StringBuffer();//StringBuffer sb = new StringBuffer(9)
+		StringBuilder sb = new StringBuilder(9);
 		do {
 			a = i % 16;
 			i = i / 16;
-			sb.append(S.charAt(a));
+			sb.append(HEX_CHARS[a]);
 		} while (i != 0);
+		if (isNegatives) {
+			sb.append('-');
+		}
 		return sb.reverse().toString();
 	}
 }
