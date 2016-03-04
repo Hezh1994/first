@@ -5,7 +5,10 @@ import java.util.List;
 
 public class TNode {
 	private String value;
-	public TNode left, right;
+	private TNode left, right;
+
+	public TNode() {
+	}
 
 	public TNode(String value) {
 		super();
@@ -92,6 +95,45 @@ public class TNode {
 				sb.append('-');
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * 前序遍历
+	 * 
+	 * @param root
+	 */
+	public void PreOrder(TNode root) {
+		if (root != null) {
+			System.out.println(root.getValue());
+			PreOrder(root.left);
+			PreOrder(root.right);
+		}
+	}
+
+	/**
+	 * 中序遍历
+	 * 
+	 * @param root
+	 */
+	public void InOrder(TNode root) {
+		if (root != null) {
+			System.out.println(root.left);
+			System.out.println(root.getValue());
+			System.out.println(root.right);
+		}
+	}
+
+	/**
+	 * 后序遍历
+	 * 
+	 * @param root
+	 */
+	public void PostOrder(TNode root) {
+		if (root != null) {
+			System.out.println(root.left);
+			System.out.println(root.right);
+			System.out.println(root.getValue());
+		}
 	}
 
 }

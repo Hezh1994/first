@@ -1,15 +1,18 @@
 package com.succez.first;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestFileToByte {
-	File file = new File("d:\\a.txt");
+	File file = new File("D:\\a.txt");
+	File fileNull = null;
+	File fileNotFound = new File("F:\\a.txt");
 
-	@Test
-	public void test() throws FileNotFoundException, IOException {
+	@Test(expected = Exception.class)
+	public void test() throws Exception {
+		assertNotNull(FileToByte.fileToByte(file));
+		assertNull(FileToByte.fileToByte(fileNull));
+		FileToByte.fileToByte(fileNotFound);
 	}
-
 }

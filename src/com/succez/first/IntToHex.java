@@ -6,15 +6,16 @@ public class IntToHex {
 
 	/**
 	 * 将一个十进制数转换为十六进制，并返回十六进制字符串。如：intToHex(Integer.MAX_VALUE),返回7fffffff。
+	 * 
 	 * @param i
 	 *            十进制数
 	 * @return 十六进制数字符串
 	 */
 	public static String intToHex(int i) {
-		boolean isNegatives = false;
-		if(i == Integer.MIN_VALUE){
+		if (i == Integer.MIN_VALUE) {
 			return "-80000000";
 		}
+		boolean isNegatives = false;
 		if (i < 0) {
 			isNegatives = true;
 			i = Math.abs(i);
@@ -22,8 +23,8 @@ public class IntToHex {
 		int a = 0;
 		StringBuilder sb = new StringBuilder(9);
 		do {
-			a = i % 16;
-			i = i / 16;
+			a = i & 15;
+			i = i >> 4;
 			sb.append(HEX_CHARS[a]);
 		} while (i != 0);
 		if (isNegatives) {
