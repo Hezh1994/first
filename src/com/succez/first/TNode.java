@@ -50,11 +50,11 @@ public class TNode {
 	 *            层数
 	 * @return 第n层所有节点的值，且顺序从左到右，格式如：A-B-C。
 	 */
-	private static List<TNode> getNodesByTreeLevel(List<TNode> nodes, int n) {
+	private static List<TNode> getNodesByTreeLevel(List<TNode> nodes, int n,
+			List<TNode> temp) {
 		if (n == 1) {
 			return nodes;
 		}
-		List<TNode> temp = new ArrayList<TNode>();
 		for (TNode node : nodes) {
 			if (node.getLeft() != null) {
 				temp.add(node.getLeft());
@@ -64,7 +64,7 @@ public class TNode {
 			}
 		}
 		nodes.removeAll(nodes);
-		return getNodesByTreeLevel(temp, n - 1);
+		return getNodesByTreeLevel(temp, n - 1, nodes);
 	}
 
 	/**
@@ -86,9 +86,10 @@ public class TNode {
 			throw new WrongLevelException("请输入正确的层数:0~最大层数");
 		}
 		List<TNode> nodes = new ArrayList<TNode>();
+		List<TNode> temp = new ArrayList<TNode>();
 		nodes.add(tree);
 		ArrayList<TNode> result = (ArrayList<TNode>) getNodesByTreeLevel(nodes,
-				n);
+				n, temp);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < result.size(); i++) {
 			sb.append(result.get(i).getValue());

@@ -20,7 +20,7 @@ public class FileToByte {
 		ByteArrayOutputStream bos = null;
 		try {
 			if (file == null) {
-				throw new IllegalArgumentException("文件不存在");
+				throw new Exception("文件不存在");
 			}
 			if (file.length() > Integer.MAX_VALUE) {
 				throw new Exception("文件太大，无法进行转换");
