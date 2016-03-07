@@ -6,9 +6,6 @@ import java.util.List;
 public class TNode {
 	private String value;
 	private TNode left, right;
-	private StringBuffer preStringBuffer;
-	private StringBuffer inPreStringBuffer;
-	private StringBuffer postStringBuffer;
 
 	public TNode() {
 	}
@@ -18,9 +15,6 @@ public class TNode {
 		this.value = value;
 		this.left = null;
 		this.right = null;
-		this.preStringBuffer = new StringBuffer();
-		this.inPreStringBuffer = new StringBuffer();
-		this.postStringBuffer = new StringBuffer();
 	}
 
 	public String getValue() {
@@ -57,10 +51,10 @@ public class TNode {
 	 * @return 第n层所有节点的值，且顺序从左到右，格式如：A-B-C。
 	 */
 	private static List<TNode> getNodesByTreeLevel(List<TNode> nodes, int n) {
-		List<TNode> temp = new ArrayList<TNode>();
 		if (n == 1) {
 			return nodes;
 		}
+		List<TNode> temp = new ArrayList<TNode>();
 		for (TNode node : nodes) {
 			if (node.getLeft() != null) {
 				temp.add(node.getLeft());
@@ -105,44 +99,56 @@ public class TNode {
 	}
 
 	/**
-	 * 先序遍历
+	 * 先序遍历二叉树，将节点信息保存到指定集合中并返回
 	 * 
 	 * @param root
+	 *            二叉树的根节点
+	 * @param list
+	 *            用来保存节点信息的集合
+	 * @return
 	 */
-	public String PreOrder(TNode root) {
+	public static ArrayList<TNode> preorder(TNode root, ArrayList<TNode> list) {
 		if (root != null) {
-			preStringBuffer.append(root.getValue());
-			PreOrder(root.left);
-			PreOrder(root.right);
+			list.add(root);
+			preorder(root.left, list);
+			preorder(root.right, list);
 		}
-		return preStringBuffer.toString();
+		return list;
 	}
 
 	/**
-	 * 中序遍历
+	 * 中序遍历二叉树，将节点信息保存到指定集合中并返回
 	 * 
 	 * @param root
+	 *            二叉树的根节点
+	 * @param list
+	 *            用来保存节点信息的集合
+	 * @return
 	 */
-	public String InOrder(TNode root) {
+	public static ArrayList<TNode> inorder(TNode root, ArrayList<TNode> list) {
 		if (root != null) {
-			InOrder(root.left);
-			inPreStringBuffer.append(root.getValue());
-			InOrder(root.right);
+			inorder(root.left, list);
+			list.add(root);
+			inorder(root.right, list);
 		}
-		return inPreStringBuffer.toString();
+		return list;
 	}
 
 	/**
-	 * 后序遍历
+	 * 后序遍历二叉树，将节点信息保存到指定集合中并返回
 	 * 
 	 * @param root
+	 *            二叉树的根节点
+	 * @param list
+	 *            用来保存节点信息的集合
+	 * @return
 	 */
-	public String PostOrder(TNode root) {
+	public static ArrayList<TNode> postorder(TNode root, ArrayList<TNode> list) {
 		if (root != null) {
-			PostOrder(root.left);
-			PostOrder(root.right);
-			postStringBuffer.append(root.getValue());
+			postorder(root.left, list);
+			postorder(root.right, list);
+			list.add(root);
 		}
-		return postStringBuffer.toString();
+		return list;
 	}
 }

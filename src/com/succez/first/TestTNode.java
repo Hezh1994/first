@@ -2,6 +2,8 @@ package com.succez.first;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import org.junit.Rule;
@@ -61,6 +63,16 @@ public class TestTNode {
 		return root;
 	}
 
+	public String printList(List<TNode> list) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < list.size(); i++) {
+			sb.append(list.get(i).getValue());
+			if (i < list.size() - 1)
+				sb.append('-');
+		}
+		return sb.toString();
+	}
+
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
 
@@ -77,10 +89,12 @@ public class TestTNode {
 		 */
 
 		TNode nodeA = creatTree("A(B(E,),C(D,F))");
-		assertEquals("ABECDF", nodeA.PreOrder(nodeA));//先序遍历
-		assertEquals("EBADCF", nodeA.InOrder(nodeA));//中序遍历
-		assertEquals("EBDFCA", nodeA.PostOrder(nodeA));//后序遍历
-		
+		ArrayList<TNode> list = new ArrayList<TNode>();
+		assertEquals("A-B-E-C-D-F", printList(TNode.preorder(nodeA, list)));// 先序遍历
+		list.removeAll(list);
+		assertEquals("E-B-A-D-C-F", printList(TNode.inorder(nodeA, list)));// 中序遍历
+		list.removeAll(list);
+		assertEquals("E-B-D-F-C-A", printList(TNode.postorder(nodeA, list)));// 后序遍历
 
 		assertEquals("A", TNode.TreeLevel(nodeA, 1));
 		assertEquals("B-C", TNode.TreeLevel(nodeA, 2));
