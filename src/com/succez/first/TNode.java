@@ -42,13 +42,15 @@ public class TNode {
 	}
 
 	/**
-	 * 传入一个包装有树的根节点的集合，以及需要查找的层数n，返回包含指定层数所有节点的ArrayList集合
+	 * 传入一个包装有树的根节点的集合，以及需要查找的层数n， 返回包含指定层数所有节点的ArrayList集合
 	 * 
 	 * @param nodes
 	 *            包装树的根节点的List集合
 	 * @param n
 	 *            层数
-	 * @return 第n层所有节点的值，且顺序从左到右，格式如：A-B-C。
+	 * @param temp
+	 *            临时的List集合
+	 * @return 第n层所有节点的值
 	 */
 	private static List<TNode> getNodesByTreeLevel(List<TNode> nodes, int n,
 			List<TNode> temp) {
@@ -74,8 +76,9 @@ public class TNode {
 	 *            树的根节点
 	 * @param n
 	 *            要查询的层数
-	 * @return 指定层数n所有节点的值
-	 * @throws Exception
+	 * @return 第n层所有节点的值，且顺序从左到右，格式如：A-B-C。
+	 * @throws NullPointerException
+	 *             ,WrongLevelException
 	 */
 	public static String TreeLevel(TNode tree, int n)
 			throws NullPointerException, WrongLevelException {
@@ -106,7 +109,7 @@ public class TNode {
 	 *            二叉树的根节点
 	 * @param list
 	 *            用来保存节点信息的集合
-	 * @return
+	 * @return 包含二叉树所有节点信息的集合
 	 */
 	public static ArrayList<TNode> preorder(TNode root, ArrayList<TNode> list) {
 		if (root != null) {
@@ -124,7 +127,7 @@ public class TNode {
 	 *            二叉树的根节点
 	 * @param list
 	 *            用来保存节点信息的集合
-	 * @return
+	 * @return 包含二叉树所有节点信息的集合
 	 */
 	public static ArrayList<TNode> inorder(TNode root, ArrayList<TNode> list) {
 		if (root != null) {
@@ -142,7 +145,7 @@ public class TNode {
 	 *            二叉树的根节点
 	 * @param list
 	 *            用来保存节点信息的集合
-	 * @return
+	 * @return 包含二叉树所有节点信息的集合
 	 */
 	public static ArrayList<TNode> postorder(TNode root, ArrayList<TNode> list) {
 		if (root != null) {
