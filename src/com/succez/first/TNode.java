@@ -77,12 +77,13 @@ public class TNode {
 	 * @return 指定层数n所有节点的值
 	 * @throws Exception
 	 */
-	public static String TreeLevel(TNode tree, int n) throws Exception {
+	public static String TreeLevel(TNode tree, int n)
+			throws NullPointerException, WrongLevelException {
 		if (tree == null) {
-			throw new Exception("请不要输入一个空树");
+			throw new NullPointerException("请不要输入一个空树");
 		}
 		if (n <= 0) {
-			throw new Exception("请输入正确的层数:0~最大层数");
+			throw new WrongLevelException("请输入正确的层数:0~最大层数");
 		}
 		List<TNode> nodes = new ArrayList<TNode>();
 		nodes.add(tree);
@@ -117,9 +118,9 @@ public class TNode {
 	 */
 	public void InOrder(TNode root) {
 		if (root != null) {
-			System.out.println(root.left);
+			InOrder(root.left);
 			System.out.println(root.getValue());
-			System.out.println(root.right);
+			InOrder(root.right);
 		}
 	}
 
@@ -130,10 +131,9 @@ public class TNode {
 	 */
 	public void PostOrder(TNode root) {
 		if (root != null) {
-			System.out.println(root.left);
-			System.out.println(root.right);
+			PostOrder(root.left);
+			PostOrder(root.right);
 			System.out.println(root.getValue());
 		}
 	}
-
 }
