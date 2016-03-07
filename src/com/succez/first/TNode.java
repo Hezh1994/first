@@ -80,7 +80,7 @@ public class TNode {
 	 * @throws NullPointerException
 	 *             ,WrongLevelException
 	 */
-	public static String TreeLevel(TNode tree, int n)
+	public static String getNodesValue(TNode tree, int n)
 			throws NullPointerException, WrongLevelException {
 		if (tree == null) {
 			throw new NullPointerException("请不要输入一个空树");

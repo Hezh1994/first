@@ -96,17 +96,17 @@ public class TestTNode {
 		list.removeAll(list);
 		assertEquals("E-B-D-F-C-A", printList(TNode.postorder(nodeA, list)));// 后序遍历
 
-		assertEquals("A", TNode.TreeLevel(nodeA, 1));
-		assertEquals("B-C", TNode.TreeLevel(nodeA, 2));
-		assertEquals("E-D-F", TNode.TreeLevel(nodeA, 3));
+		assertEquals("A", TNode.getNodesValue(nodeA, 1));
+		assertEquals("B-C", TNode.getNodesValue(nodeA, 2));
+		assertEquals("E-D-F", TNode.getNodesValue(nodeA, 3));
 
 		expectedEx.expect(WrongLevelException.class);
 		expectedEx.expectMessage("请输入正确的层数:0~最大层数");
-		TNode.TreeLevel(nodeA, -1);
+		TNode.getNodesValue(nodeA, -1);
 
 		expectedEx.expect(NullPointerException.class);
 		expectedEx.expectMessage("请不要输入一个空树");
 		TNode nodeB = null;
-		TNode.TreeLevel(nodeB, 1);
+		TNode.getNodesValue(nodeB, 1);
 	}
 }
