@@ -75,7 +75,13 @@ public class TestTNode {
 		 *     E   D   F
 		 * </pre>
 		 */
+
 		TNode nodeA = creatTree("A(B(E,),C(D,F))");
+		assertEquals("ABECDF", nodeA.PreOrder(nodeA));//先序遍历
+		assertEquals("EBADCF", nodeA.InOrder(nodeA));//中序遍历
+		assertEquals("EBDFCA", nodeA.PostOrder(nodeA));//后序遍历
+		
+
 		assertEquals("A", TNode.TreeLevel(nodeA, 1));
 		assertEquals("B-C", TNode.TreeLevel(nodeA, 2));
 		assertEquals("E-D-F", TNode.TreeLevel(nodeA, 3));
@@ -83,7 +89,7 @@ public class TestTNode {
 		expectedEx.expect(WrongLevelException.class);
 		expectedEx.expectMessage("请输入正确的层数:0~最大层数");
 		TNode.TreeLevel(nodeA, -1);
-		
+
 		expectedEx.expect(NullPointerException.class);
 		expectedEx.expectMessage("请不要输入一个空树");
 		TNode nodeB = null;

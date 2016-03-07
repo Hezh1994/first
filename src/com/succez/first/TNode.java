@@ -6,6 +6,9 @@ import java.util.List;
 public class TNode {
 	private String value;
 	private TNode left, right;
+	private StringBuffer preStringBuffer;
+	private StringBuffer inPreStringBuffer;
+	private StringBuffer postStringBuffer;
 
 	public TNode() {
 	}
@@ -15,6 +18,9 @@ public class TNode {
 		this.value = value;
 		this.left = null;
 		this.right = null;
+		this.preStringBuffer = new StringBuffer();
+		this.inPreStringBuffer = new StringBuffer();
+		this.postStringBuffer = new StringBuffer();
 	}
 
 	public String getValue() {
@@ -99,16 +105,17 @@ public class TNode {
 	}
 
 	/**
-	 * 前序遍历
+	 * 先序遍历
 	 * 
 	 * @param root
 	 */
-	public void PreOrder(TNode root) {
+	public String PreOrder(TNode root) {
 		if (root != null) {
-			System.out.println(root.getValue());
+			preStringBuffer.append(root.getValue());
 			PreOrder(root.left);
 			PreOrder(root.right);
 		}
+		return preStringBuffer.toString();
 	}
 
 	/**
@@ -116,12 +123,13 @@ public class TNode {
 	 * 
 	 * @param root
 	 */
-	public void InOrder(TNode root) {
+	public String InOrder(TNode root) {
 		if (root != null) {
 			InOrder(root.left);
-			System.out.println(root.getValue());
+			inPreStringBuffer.append(root.getValue());
 			InOrder(root.right);
 		}
+		return inPreStringBuffer.toString();
 	}
 
 	/**
@@ -129,11 +137,12 @@ public class TNode {
 	 * 
 	 * @param root
 	 */
-	public void PostOrder(TNode root) {
+	public String PostOrder(TNode root) {
 		if (root != null) {
 			PostOrder(root.left);
 			PostOrder(root.right);
-			System.out.println(root.getValue());
+			postStringBuffer.append(root.getValue());
 		}
+		return postStringBuffer.toString();
 	}
 }
