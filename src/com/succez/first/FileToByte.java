@@ -1,6 +1,6 @@
 package com.succez.first;
 
-import java.io.ByteArrayOutputStream;
+//import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,9 +19,8 @@ public class FileToByte {
 	 */
 	public static byte[] fileToByte(File file) throws NullPointerException,
 			CanNotTranslateException, IOException {
-		log.severe("输出流关闭失败");
 		FileInputStream fis = null;
-		ByteArrayOutputStream bos = null;
+//		ByteArrayOutputStream bos = null;
 		try {
 			if (file == null) {
 				throw new NullPointerException("文件不存在");
@@ -29,22 +28,30 @@ public class FileToByte {
 			if (file.length() > Integer.MAX_VALUE) {
 				throw new CanNotTranslateException("文件太大，无法进行转换");
 			}
-			fis = new FileInputStream(file);
-			bos = new ByteArrayOutputStream((int) file.length());// 这里用1000会浪费很多临时内存空间
-			byte[] b = new byte[4096];// 读缓存最好一次读4096或者8192
-			int i;
-			while ((i = fis.read(b)) != -1) {
-				bos.write(b, 0, i);
-
-			}
-			return bos.toByteArray();
 			// fis = new FileInputStream(file);
-			// byte[] b = new byte[(int) (file.length()+1)];
-			// int i, off = 0;
-			// while ((i = fis.read(b, off, 4096)) != -1) {
-			// off = off + i;
+			// bos = new ByteArrayOutputStream((int) file.length());//
+			// 这里用1000会浪费很多临时内存空间
+			// byte[] b = new byte[4096];// 读缓存最好一次读4096或者8192
+			// int i;
+			// while ((i = fis.read(b)) != -1) {
+			// bos.write(b, 0, i);
+			//
 			// }
-			// return b;
+			// return bos.toByteArray();
+			
+			/**
+			 * 更高效的读取方法，不需要中间缓存，直接读到字节数组中。
+			 */
+			fis = new FileInputStream(file);
+			int i, off = 0;
+			int len = (int) file.length();
+			byte[] b = new byte[(int) file.length()];
+			// 如果len > b.length - off，抛出IndexOutOfBounds异常。
+			while (off != file.length()) {
+				i = fis.read(b, off, len);
+				off += i;
+			}
+			return b;
 		} finally {
 			try {
 				if (fis != null) {
@@ -53,13 +60,13 @@ public class FileToByte {
 			} catch (Exception e) {
 				log.severe("输入流关闭失败");
 			}
-			try {
-				if (bos != null) {
-					bos.close();
-				}
-			} catch (Exception e) {
-				log.severe("输出流关闭失败");
-			}
+//			try {
+//				if (bos != null) {
+//					bos.close();
+//				}
+//			} catch (Exception e) {
+//				log.severe("输出流关闭失败");
+//			}
 		}
 	}
 }
