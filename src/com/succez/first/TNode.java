@@ -52,7 +52,7 @@ public class TNode {
 	 *            临时的List集合
 	 * @return 第n层所有节点的值
 	 */
-	private static List<TNode> getNodesByTreeLevel(List<TNode> nodes, int n,
+	public static List<TNode> getNodesByTreeLevel(List<TNode> nodes, int n,
 			List<TNode> temp) {
 		if (n == 1) {
 			return nodes;
@@ -67,39 +67,6 @@ public class TNode {
 		}
 		nodes.removeAll(nodes);
 		return getNodesByTreeLevel(temp, n - 1, nodes);
-	}
-
-	/**
-	 * 根据树的根节点查询指定层数n的所有节点的值，结果返回一个字符串如：A-B-C
-	 * 
-	 * @param tree
-	 *            树的根节点
-	 * @param n
-	 *            要查询的层数
-	 * @return 第n层所有节点的值，且顺序从左到右，格式如：A-B-C。
-	 * @throws NullPointerException
-	 *             ,WrongLevelException
-	 */
-	public static String getNodesValue(TNode tree, int n)
-			throws NullPointerException, WrongLevelException {
-		if (tree == null) {
-			throw new NullPointerException("请不要输入一个空树");
-		}
-		if (n <= 0) {
-			throw new WrongLevelException("请输入正确的层数:0~最大层数");
-		}
-		List<TNode> nodes = new ArrayList<TNode>();
-		List<TNode> temp = new ArrayList<TNode>();
-		nodes.add(tree);
-		ArrayList<TNode> result = (ArrayList<TNode>) getNodesByTreeLevel(nodes,
-				n, temp);
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < result.size(); i++) {
-			sb.append(result.get(i).getValue());
-			if (i < result.size() - 1)
-				sb.append('-');
-		}
-		return sb.toString();
 	}
 
 	/**

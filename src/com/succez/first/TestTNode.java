@@ -63,6 +63,39 @@ public class TestTNode {
 		return root;
 	}
 
+	/**
+	 * 根据树的根节点查询指定层数n的所有节点的值，结果返回一个字符串如：A-B-C
+	 * 
+	 * @param tree
+	 *            树的根节点
+	 * @param n
+	 *            要查询的层数
+	 * @return 第n层所有节点的值，且顺序从左到右，格式如：A-B-C。
+	 * @throws NullPointerException
+	 *             ,WrongLevelException
+	 */
+	public static String getNodesValue(TNode tree, int n)
+			throws NullPointerException, WrongLevelException {
+		if (tree == null) {
+			throw new NullPointerException("请不要输入一个空树");
+		}
+		if (n <= 0) {
+			throw new WrongLevelException("请输入正确的层数:0~最大层数");
+		}
+		List<TNode> nodes = new ArrayList<TNode>();
+		List<TNode> temp = new ArrayList<TNode>();
+		nodes.add(tree);
+		ArrayList<TNode> result = (ArrayList<TNode>) TNode.getNodesByTreeLevel(
+				nodes, n, temp);
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < result.size(); i++) {
+			sb.append(result.get(i).getValue());
+			if (i < result.size() - 1)
+				sb.append('-');
+		}
+		return sb.toString();
+	}
+
 	public String printList(List<TNode> list) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) {
@@ -96,17 +129,17 @@ public class TestTNode {
 		list.removeAll(list);
 		assertEquals("E-B-D-F-C-A", printList(TNode.postorder(nodeA, list)));// 后序遍历
 
-		assertEquals("A", TNode.getNodesValue(nodeA, 1));
-		assertEquals("B-C", TNode.getNodesValue(nodeA, 2));
-		assertEquals("E-D-F", TNode.getNodesValue(nodeA, 3));
+		assertEquals("A", getNodesValue(nodeA, 1));
+		assertEquals("B-C", getNodesValue(nodeA, 2));
+		assertEquals("E-D-F", getNodesValue(nodeA, 3));
 
 		expectedEx.expect(WrongLevelException.class);
 		expectedEx.expectMessage("请输入正确的层数:0~最大层数");
-		TNode.getNodesValue(nodeA, -1);
+		getNodesValue(nodeA, -1);
 
 		expectedEx.expect(NullPointerException.class);
 		expectedEx.expectMessage("请不要输入一个空树");
 		TNode nodeB = null;
-		TNode.getNodesValue(nodeB, 1);
+		getNodesValue(nodeB, 1);
 	}
 }
