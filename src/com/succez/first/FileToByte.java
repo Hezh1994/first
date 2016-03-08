@@ -20,7 +20,7 @@ public class FileToByte {
 	public static byte[] fileToByte(File file) throws NullPointerException,
 			CanNotTranslateException, IOException {
 		FileInputStream fis = null;
-//		ByteArrayOutputStream bos = null;
+		// ByteArrayOutputStream bos = null;
 		try {
 			if (file == null) {
 				throw new NullPointerException("文件不存在");
@@ -38,16 +38,17 @@ public class FileToByte {
 			//
 			// }
 			// return bos.toByteArray();
-			
+
 			/**
 			 * 更高效的读取方法，不需要中间缓存，直接读到字节数组中。
 			 */
 			fis = new FileInputStream(file);
 			int i, off = 0;
-			int len = (int) file.length();
-			byte[] b = new byte[(int) file.length()];
+			int fileLength = (int) file.length();
+			int len = fileLength < 4096 ? fileLength : 4096;
+			byte[] b = new byte[fileLength];
 			// 如果len > b.length - off，抛出IndexOutOfBounds异常。
-			while (off != file.length()) {
+			while (off != fileLength) {
 				i = fis.read(b, off, len);
 				off += i;
 			}
@@ -60,13 +61,13 @@ public class FileToByte {
 			} catch (Exception e) {
 				log.severe("输入流关闭失败");
 			}
-//			try {
-//				if (bos != null) {
-//					bos.close();
-//				}
-//			} catch (Exception e) {
-//				log.severe("输出流关闭失败");
-//			}
+			// try {
+			// if (bos != null) {
+			// bos.close();
+			// }
+			// } catch (Exception e) {
+			// log.severe("输出流关闭失败");
+			// }
 		}
 	}
 }
