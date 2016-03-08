@@ -19,6 +19,7 @@ public class FileToByte {
 	 */
 	public static byte[] fileToByte(File file) throws NullPointerException,
 			CanNotTranslateException, IOException {
+		log.severe("Êä³öÁ÷¹Ø±ÕÊ§°Ü");
 		FileInputStream fis = null;
 		ByteArrayOutputStream bos = null;
 		try {

@@ -83,10 +83,8 @@ public class TestTNode {
 			throw new WrongLevelException("请输入正确的层数:0~最大层数");
 		}
 		List<TNode> nodes = new ArrayList<TNode>();
-		List<TNode> temp = new ArrayList<TNode>();
-		nodes.add(tree);
 		ArrayList<TNode> result = (ArrayList<TNode>) TNode.getNodesByTreeLevel(
-				nodes, n, temp);
+				tree, n, nodes);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < result.size(); i++) {
 			sb.append(result.get(i).getValue());

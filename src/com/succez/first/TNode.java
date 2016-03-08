@@ -42,31 +42,32 @@ public class TNode {
 	}
 
 	/**
-	 * 传入一个包装有树的根节点的集合，以及需要查找的层数n， 返回包含指定层数所有节点的ArrayList集合
+	 * 根据层次遍历的顺序，获得二叉树第n层节点的所有节点集合
 	 * 
-	 * @param nodes
-	 *            包装树的根节点的List集合
+	 * @param root
+	 *            二叉树的根节点
 	 * @param n
 	 *            层数
-	 * @param temp
-	 *            临时的List集合
-	 * @return 第n层所有节点的值
+	 * @param nodes
+	 *            存放节点信息的集合
+	 * @return 第n层的所有节点
 	 */
-	public static List<TNode> getNodesByTreeLevel(List<TNode> nodes, int n,
-			List<TNode> temp) {
+	public static List<TNode> getNodesByTreeLevel(TNode root, int n,
+			List<TNode> nodes) {
+		if (root == null) {
+			throw new NullPointerException("请不要输入一颗空树");
+		}
 		if (n == 1) {
-			return nodes;
-		}
-		for (TNode node : nodes) {
-			if (node.getLeft() != null) {
-				temp.add(node.getLeft());
+			nodes.add(root);
+		} else {
+			if (root.left != null) {
+				getNodesByTreeLevel(root.left, n - 1, nodes);
 			}
-			if (node.getRight() != null) {
-				temp.add(node.getRight());
+			if (root.right != null) {
+				getNodesByTreeLevel(root.right, n - 1, nodes);
 			}
 		}
-		nodes.removeAll(nodes);
-		return getNodesByTreeLevel(temp, n - 1, nodes);
+		return nodes;
 	}
 
 	/**
