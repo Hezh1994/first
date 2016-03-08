@@ -1,18 +1,28 @@
 package com.succez.first;
 
 import java.io.File;
+
 import static org.junit.Assert.*;
+
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class TestFileToByte {
-	File file = new File("D:\\a.txt");
+	File file = new File("D:\\test.txt");
 	File fileNull = null;
-	File fileNotFound = new File("F:\\a.txt");
 
-	@Test(expected = Exception.class)
+	@Rule
+	public ExpectedException expectedEx = ExpectedException.none();
+
+	@Test
 	public void test() throws Exception {
-		assertNotNull(FileToByte.fileToByte(file));
-		assertNull(FileToByte.fileToByte(fileNull));
-		FileToByte.fileToByte(fileNotFound);
+		assertEquals("1234567887654321",
+				new String(FileToByte.fileToByte(file)));
+
+		expectedEx.expect(NullPointerException.class);
+		expectedEx.expectMessage("文件不存在");
+		FileToByte.fileToByte(fileNull);
+
 	}
 }
