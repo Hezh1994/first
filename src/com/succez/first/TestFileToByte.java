@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class TestFileToByte {
-	File file = new File("D:\\test.txt");
+	File file = new File("D:/test.txt");
 	File fileNull = null;
 
 	@Rule
