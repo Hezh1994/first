@@ -21,7 +21,7 @@ public class TestFileToByte {
 				new String(FileToByte.fileToByte(file)));
 
 		expectedEx.expect(NullPointerException.class);
-		expectedEx.expectMessage("ÎÄ¼þ²»´æÔÚ");
+		expectedEx.expectMessage("ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		FileToByte.fileToByte(fileNull);
 
 	}

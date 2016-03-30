@@ -10,7 +10,7 @@ public class FileToByte {
 	private static Logger log = Logger.getLogger(FileToByte.class.getName());
 
 	/**
-	 * ½«Ö¸¶¨ÎÄ¼þ×ª»»ÎªÒ»¸ö×Ö½ÚÊý×é²¢·µ»Ø,µ±ÎÄ¼þ¹ý´ó½«ÎÞ·¨½øÐÐ×ª»»
+	 * ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ä¼ï¿½×ªï¿½ï¿½ÎªÒ»ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½é²¢ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
 	 * 
 	 * @param File
 	 * @return byte[]
@@ -23,15 +23,15 @@ public class FileToByte {
 		// ByteArrayOutputStream bos = null;
 		try {
 			if (file == null) {
-				throw new NullPointerException("ÎÄ¼þ²»´æÔÚ");
+				throw new NullPointerException("ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			}
 			if (file.length() > Integer.MAX_VALUE) {
-				throw new CanNotTranslateException("ÎÄ¼þÌ«´ó£¬ÎÞ·¨½øÐÐ×ª»»");
+				throw new CanNotTranslateException("ï¿½Ä¼ï¿½Ì«ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½");
 			}
 			// fis = new FileInputStream(file);
 			// bos = new ByteArrayOutputStream((int) file.length());//
-			// ÕâÀïÓÃ1000»áÀË·ÑºÜ¶àÁÙÊ±ÄÚ´æ¿Õ¼ä
-			// byte[] b = new byte[4096];// ¶Á»º´æ×îºÃÒ»´Î¶Á4096»òÕß8192
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1000ï¿½ï¿½ï¿½Ë·ÑºÜ¶ï¿½ï¿½ï¿½Ê±ï¿½Ú´ï¿½Õ¼ï¿½
+			// byte[] b = new byte[4096];// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î¶ï¿½4096ï¿½ï¿½ï¿½ï¿½8192
 			// int i;
 			// while ((i = fis.read(b)) != -1) {
 			// bos.write(b, 0, i);
@@ -40,14 +40,14 @@ public class FileToByte {
 			// return bos.toByteArray();
 
 			/**
-			 * ¸ü¸ßÐ§µÄ¶ÁÈ¡·½·¨£¬²»ÐèÒªÖÐ¼ä»º´æ£¬Ö±½Ó¶Áµ½×Ö½ÚÊý×éÖÐ¡£
+			 * ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ä¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ð¼ä»ºï¿½æ£¬Ö±ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½
 			 */
 			fis = new FileInputStream(file);
 			int i, off = 0;
 			int fileLength = (int) file.length();
 			int len = fileLength < 4096 ? fileLength : 4096;
-			byte[] b = new byte[fileLength];
-			// Èç¹ûlen > b.length - off£¬Å×³öIndexOutOfBoundsÒì³£¡£
+			byte[] b = new byte[len];
+			// ï¿½ï¿½ï¿½len > b.length - offï¿½ï¿½ï¿½×³ï¿½IndexOutOfBoundsï¿½ì³£ï¿½ï¿½
 			while (off != fileLength) {
 				i = fis.read(b, off, len);
 				off += i;
@@ -59,14 +59,14 @@ public class FileToByte {
 					fis.close();
 				}
 			} catch (Exception e) {
-				log.severe("ÊäÈëÁ÷¹Ø±ÕÊ§°Ü");
+				log.severe("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½Ê§ï¿½ï¿½");
 			}
 			// try {
 			// if (bos != null) {
 			// bos.close();
 			// }
 			// } catch (Exception e) {
-			// log.severe("Êä³öÁ÷¹Ø±ÕÊ§°Ü");
+			// log.severe("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½Ê§ï¿½ï¿½");
 			// }
 		}
 	}

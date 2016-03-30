@@ -12,7 +12,7 @@ import org.junit.rules.ExpectedException;
 
 public class TestTNode {
 	/**
-	 * ½«Ò»´®ÕýÈ·µÄÀ¨ºÅ±íÊ¾·¨±íÊ¾µÄ¶þ²æÊ÷×Ö·û´®×ª»»ÎªÊ÷£¬²¢·µ»Ø¸ù½Úµã. Èç£º"A(B(D,),C(E,F))",±íÊ¾µÄÊ÷Îª
+	 * ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½Å±ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½Úµï¿½. ï¿½ç£º"A(B(D,),C(E,F))",ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Îª
 	 * 
 	 * <pre>
 	 *         A
@@ -22,8 +22,8 @@ public class TestTNode {
 	 *     E   D   f
 	 * </pre>
 	 * 
-	 * @param ÕýÈ·µÄÀ¨ºÅ±íÊ¾·¨±íÊ¾µÄ¶þ²æÊ÷×Ö·û´®
-	 * @return ¶þ²æÊ÷µÄ¸ù½Úµã
+	 * @param ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½Å±ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Úµï¿½
 	 */
 	public TNode creatTree(String s) {
 		Stack<TNode> nodeStack = new Stack<TNode>();
@@ -64,23 +64,23 @@ public class TestTNode {
 	}
 
 	/**
-	 * ¸ù¾ÝÊ÷µÄ¸ù½Úµã²éÑ¯Ö¸¶¨²ãÊýnµÄËùÓÐ½ÚµãµÄÖµ£¬½á¹û·µ»ØÒ»¸ö×Ö·û´®Èç£ºA-B-C
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Úµï¿½ï¿½Ñ¯Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½Ð½Úµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ç£ºA-B-C
 	 * 
 	 * @param tree
-	 *            Ê÷µÄ¸ù½Úµã
+	 *            ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Úµï¿½
 	 * @param n
-	 *            Òª²éÑ¯µÄ²ãÊý
-	 * @return µÚn²ãËùÓÐ½ÚµãµÄÖµ£¬ÇÒË³Ðò´Ó×óµ½ÓÒ£¬¸ñÊ½Èç£ºA-B-C¡£
+	 *            Òªï¿½ï¿½Ñ¯ï¿½Ä²ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½Ð½Úµï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò£ï¿½ï¿½ï¿½Ê½ï¿½ç£ºA-B-Cï¿½ï¿½
 	 * @throws NullPointerException
 	 *             ,WrongLevelException
 	 */
 	public static String getNodesValue(TNode tree, int n)
 			throws NullPointerException, WrongLevelException {
 		if (tree == null) {
-			throw new NullPointerException("Çë²»ÒªÊäÈëÒ»¸ö¿ÕÊ÷");
+			throw new NullPointerException("ï¿½ë²»Òªï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 		if (n <= 0) {
-			throw new WrongLevelException("ÇëÊäÈëÕýÈ·µÄ²ãÊý:0~×î´ó²ãÊý");
+			throw new WrongLevelException("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½Ä²ï¿½ï¿½ï¿½:0~ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 		List<TNode> nodes = new ArrayList<TNode>();
 		ArrayList<TNode> result = (ArrayList<TNode>) TNode.getNodesByTreeLevel(
@@ -121,22 +121,22 @@ public class TestTNode {
 
 		TNode nodeA = creatTree("A(B(E,),C(D,F))");
 		ArrayList<TNode> list = new ArrayList<TNode>();
-		assertEquals("A-B-E-C-D-F", printList(TNode.preorder(nodeA, list)));// ÏÈÐò±éÀú
+		assertEquals("A-B-E-C-D-F", printList(TNode.preorder(nodeA, list)));// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		list.removeAll(list);
-		assertEquals("E-B-A-D-C-F", printList(TNode.inorder(nodeA, list)));// ÖÐÐò±éÀú
+		assertEquals("E-B-A-D-C-F", printList(TNode.inorder(nodeA, list)));// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		list.removeAll(list);
-		assertEquals("E-B-D-F-C-A", printList(TNode.postorder(nodeA, list)));// ºóÐò±éÀú
+		assertEquals("E-B-D-F-C-A", printList(TNode.postorder(nodeA, list)));// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		assertEquals("A", getNodesValue(nodeA, 1));
 		assertEquals("B-C", getNodesValue(nodeA, 2));
 		assertEquals("E-D-F", getNodesValue(nodeA, 3));
 
 		expectedEx.expect(WrongLevelException.class);
-		expectedEx.expectMessage("ÇëÊäÈëÕýÈ·µÄ²ãÊý:0~×î´ó²ãÊý");
+		expectedEx.expectMessage("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½Ä²ï¿½ï¿½ï¿½:0~ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		getNodesValue(nodeA, -1);
 
 		expectedEx.expect(NullPointerException.class);
-		expectedEx.expectMessage("Çë²»ÒªÊäÈëÒ»¸ö¿ÕÊ÷");
+		expectedEx.expectMessage("ï¿½ë²»Òªï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		TNode nodeB = null;
 		getNodesValue(nodeB, 1);
 	}
